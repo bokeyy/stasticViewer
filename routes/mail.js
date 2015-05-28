@@ -3,7 +3,7 @@ var MailParser = require("mailparser").MailParser;
 
 var router = express.Router();
 
-router.post('/', function (req, res, next) {
+router.post('/inbox/', function (req, res, next) {
     var statMailParser = new MailParser({
         /*
          debug: true,*/
@@ -17,8 +17,12 @@ router.post('/', function (req, res, next) {
             console.log('附件：\n', attachment.fileName);
         });
     });
-    res.pipe(statMailParser);
+    req.pipe(statMailParser);
     res.send('ok');
+});
+
+router.post('/notify/', function (req, res, next) {
+    
 });
 
 router.get('/', function (req, res, next) {
