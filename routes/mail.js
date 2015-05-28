@@ -2,13 +2,12 @@ var express = require('express');
 var MailParser = require("mailparser").MailParser;
 
 var router = express.Router();
+var statMailParser = new MailParser({
+    /*debug: true,*/
+    defaultCharset: 'utf-8'
+});
 
 router.post('/inbox/', function (req, res, next) {
-    var statMailParser = new MailParser({
-        /*
-         debug: true,*/
-        defaultCharset: 'utf-8'
-    });
     statMailParser.on("end", function (mail) {
         console.log("From:", mail.from); //[{address:'sender@example.com',name:'Sender Name'}]
         console.log("Subject:", mail.subject); // Hello world!
@@ -22,7 +21,7 @@ router.post('/inbox/', function (req, res, next) {
 });
 
 router.post('/notify/', function (req, res, next) {
-
+    console.log(req.body);
 });
 
 router.get('/', function (req, res, next) {
