@@ -8,7 +8,7 @@ var statMailParser = new MailParser({
 });
 
 router.post('/mime', function (req, res, next) {
-    statMailParser.write(reg.body.bodyMine);
+    statMailParser.write(req.body.bodyMine);
     statMailParser.on("end", function (mail) {
         console.log("From:", mail.from); //[{address:'sender@example.com',name:'Sender Name'}]
         console.log("Subject:", mail.subject); // Hello world!
