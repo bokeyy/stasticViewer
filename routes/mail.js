@@ -9,8 +9,11 @@ var statMailParser = new MailParser({
 
 router.post('/mime', function (req, res, next) {
     console.log(req.body);
-    console.log(req.body['body-mine']);
-    statMailParser.on("end", function (mail) {
+    console.log(req.body['body-mime']);
+    req.on('data', function(){
+        console.log('data got!\n', data);
+    });
+    /*statMailParser.on("end", function (mail) {
         console.log("From:", mail.from); //[{address:'sender@example.com',name:'Sender Name'}]
         console.log("Subject:", mail.subject); // Hello world!
         console.log("Text body:", mail.text); // How are you today?
@@ -18,7 +21,7 @@ router.post('/mime', function (req, res, next) {
             console.log('附件：\n', attachment.fileName);
         });
     });
-    req.connection.pipe(statMailParser);
+    req.connection.pipe(statMailParser);*/
     res.send('ok');
 });
 
