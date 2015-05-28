@@ -14,7 +14,7 @@ router.post('/mime', function (req, res, next) {
         console.log("Text body:", mail.text); // How are you today?
         mail.attachments && mail.attachments.forEach(function (attachment) {
             if(attachment.contentType === "text/csv"){
-                new CSV(attachment.content).forEach(function(array) {
+                new CSV(new Buffer(attachment.content, 'utf-8').toString()).forEach(function(array) {
                     console.log(array);
                 });
             }
