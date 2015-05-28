@@ -15,6 +15,6 @@
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
     "mailparser": "^0.4.6",
-    "csv": "~1.2.0"
+    "comma-separated-values": "~3.6.1"
   }
 }
