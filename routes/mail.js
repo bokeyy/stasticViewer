@@ -19,7 +19,7 @@ router.post('/mime', function (req, res, next) {
     res.send('ok');
 });
 
-router.post('/notify/', function (req, res, next) {
+router.post('/in', function (req, res, next) {
     console.log(req.body);
     res.send('ok');
 });
