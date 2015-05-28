@@ -14,7 +14,6 @@ router.post('/', function (req, res, next) {
 
     req.on('end', function () {
         parseMailData(data);
-        next();
     });
     res.send('ok');
 });
@@ -37,7 +36,6 @@ parseMailData = function (mailData) {
             console.log(attachment.fileName);
         });
     });
-    fs.createReadStream("email.eml").pipe(mailparser);
     mailparser.write(mailData);
 };
 
