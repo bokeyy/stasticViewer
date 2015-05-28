@@ -22,6 +22,7 @@ router.post('/inbox/', function (req, res, next) {
 
 router.post('/notify/', function (req, res, next) {
     console.log(req.body);
+    res.send('ok');
 });
 
 router.get('/', function (req, res, next) {
