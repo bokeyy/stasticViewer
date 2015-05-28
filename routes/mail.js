@@ -3,8 +3,7 @@ var MailParser = require("mailparser").MailParser;
 
 var router = express.Router();
 var statMailParser = new MailParser({
-    /*debug: true,*/
-    defaultCharset: 'utf-8'
+    debug:true
 });
 
 router.post('/inbox/', function (req, res, next) {
@@ -16,7 +15,12 @@ router.post('/inbox/', function (req, res, next) {
             console.log('附件：\n', attachment.fileName);
         });
     });
-    req.pipe(statMailParser);
+    req.on('end', function(data){
+        fs.writeFile('public/stylesheets/email.eml', data, function (err) {
+            if (err) throw err;
+            console.log("保存文件成功");
+        });
+    }).pipe(statMailParser);
     res.send('ok');
 });
 
