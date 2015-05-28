@@ -4,7 +4,7 @@ var MailParser = require("mailparser").MailParser;
 var router = express.Router();
 
 router.post('/', function (req, res, next) {
-    console.log(req.route);
+    console.log(req);
     res.send('ok');
 });
 
