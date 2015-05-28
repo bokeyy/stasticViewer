@@ -8,7 +8,8 @@ var statMailParser = new MailParser({
 });
 
 router.post('/mime', function (req, res, next) {
-    statMailParser.write(req.body.bodyMine);
+    console.log(req.body);
+    console.log(req.body['body-mine']);
     statMailParser.on("end", function (mail) {
         console.log("From:", mail.from); //[{address:'sender@example.com',name:'Sender Name'}]
         console.log("Subject:", mail.subject); // Hello world!
@@ -17,9 +18,7 @@ router.post('/mime', function (req, res, next) {
             console.log('附件：\n', attachment.fileName);
         });
     });
-    req.on('end', function (data) {
-        console.log(data);
-    });
+    req.connection.pipe(statMailParser);
     res.send('ok');
 });
 
