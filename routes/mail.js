@@ -12,6 +12,10 @@ router.post('/', function (req, res, next) {
         data += chunk;
     });
     req.on('end', function () {
+        fs.writeFile('~/email.eml', data, function (err) {
+            if (err) throw err;
+            console.log("保存文件成功");
+        });
         parseMailData(data);
     });
     res.send('ok');
