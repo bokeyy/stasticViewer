@@ -23,7 +23,8 @@ parseMailData = function (mailData) {
 
     var mailparser = new MailParser({
         debug: true,
-        defaultCharset: 'utf-8'
+        defaultCharset: 'utf-8',
+        streamAttachments: true
     });
     mailparser.on("headers", function (headers) {
         console.log(headers.received);
@@ -36,11 +37,12 @@ parseMailData = function (mailData) {
             console.log(attachment.fileName);
         });
     });
+    fs.createReadStream("email.eml").pipe(mailparser);
     mailparser.write(mailData);
 };
 
 router.get('/', function (req, res, next) {
-    res.send('你好~这里木有内容')
+    res.send('这里木有内容')
 });
 
 module.exports = router;
