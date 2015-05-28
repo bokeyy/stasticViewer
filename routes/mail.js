@@ -5,7 +5,8 @@ var router = express.Router();
 
 /* GET mail listing. */
 router.post('/', function (req, res, next) {
-    console.log(req);
+    console.log(req.body);
+    res.send('ok');
 });
 
 module.exports = router;
