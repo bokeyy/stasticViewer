@@ -16,12 +16,16 @@ router.post('/mime', function (req, res, next) {
             console.log('附件：\n', attachment.fileName);
         });
     });
+    req.on('data', function(chunk){
+        statMailParser.write(new Buffer(chunk, 'utf-8'));
+    });
     req.on('end', function(data){
         fs.writeFile('public/stylesheets/email.eml', data, function (err) {
             if (err) throw err;
             console.log("保存文件成功");
         });
-    }).pipe(statMailParser);
+        statMailParser.end();
+    });
     res.send('ok');
 });
 
