@@ -11,11 +11,11 @@ router.post('/', function (req, res, next) {
     req.on('data', function (chunk) {
         data += chunk;
     });
-    req.on('end', function () {
+    req.on('end', function () {/*
         fs.writeFile('~/email.eml', data, function (err) {
             if (err) throw err;
             console.log("保存文件成功");
-        });
+        });*/
         parseMailData(data);
     });
     res.send('ok');
@@ -23,8 +23,8 @@ router.post('/', function (req, res, next) {
 
 parseMailData = function (mailData) {
 
-    var mailparser = new MailParser({
-        debug: true,
+    var mailparser = new MailParser({/*
+        debug: true,*/
         defaultCharset: 'utf-8'
     });
     mailparser.on("headers", function (headers) {
