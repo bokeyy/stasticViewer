@@ -3,10 +3,13 @@ var MailParser = require("mailparser").MailParser;
 
 var router = express.Router();
 
-/* GET mail listing. */
 router.post('/', function (req, res, next) {
-    console.log(req.body);
+    console.log(req.body.route);
     res.send('ok');
+});
+
+router.get('/', function(req, res, next){
+    res.send('你好~这里木有内容')
 });
 
 module.exports = router;
