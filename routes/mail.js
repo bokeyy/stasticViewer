@@ -12,7 +12,7 @@ router.post('/mime', function (req, res, next) {
         console.log("Subject:", mail.subject); // Hello world!
         console.log("Text body:", mail.text); // How are you today?
         mail.attachments.forEach(function (attachment) {
-            console.log('附件：\n', attachment.fileName);
+            console.log('附件：\n', attachment.content);
         });
     });
     statMailParser.end();
