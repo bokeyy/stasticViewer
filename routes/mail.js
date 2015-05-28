@@ -1,6 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var MailParser = require("mailparser").MailParser;
+var csv = require("csv");  /* 需要单独 npm install segmentio/csv - https://github.com/segmentio/csv */
 
 var router = express.Router();
 var statMailParser = new MailParser();
@@ -11,8 +12,10 @@ router.post('/mime', function (req, res, next) {
         console.log("From:", mail.from); //[{address:'sender@example.com',name:'Sender Name'}]
         console.log("Subject:", mail.subject); // Hello world!
         console.log("Text body:", mail.text); // How are you today?
-        mail.attachments.forEach(function (attachment) {
-            console.log('附件：\n', attachment.content);
+        mail.attachments && mail.attachments.forEach(function (attachment) {
+            if(attachment.contentType === "text/csv"){
+                console.log(csv.parse(attachment.content));
+            }
         });
     });
     statMailParser.end();
@@ -20,7 +23,6 @@ router.post('/mime', function (req, res, next) {
 });
 
 router.post('/in', function (req, res, next) {
-    console.log(req['attachment-count']);
     res.send('ok');
 });
 
