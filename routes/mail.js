@@ -3,13 +3,10 @@ var fs = require('fs');
 var MailParser = require("mailparser").MailParser;
 
 var router = express.Router();
-var statMailParser = new MailParser({
-    debug: true
-});
+var statMailParser = new MailParser();
 
 router.post('/mime', function (req, res, next) {
     statMailParser.write(req.body['body-mime']);
-    statMailParser.end();
     statMailParser.on("end", function (mail) {
         console.log("From:", mail.from); //[{address:'sender@example.com',name:'Sender Name'}]
         console.log("Subject:", mail.subject); // Hello world!
@@ -18,6 +15,7 @@ router.post('/mime', function (req, res, next) {
             console.log('附件：\n', attachment.fileName);
         });
     });
+    statMailParser.end();
     res.send('ok');
 });
 
