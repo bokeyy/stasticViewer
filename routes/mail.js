@@ -20,7 +20,7 @@ router.post('/mime', function (req, res, next) {
 });
 
 router.post('/in', function (req, res, next) {
-    console.log(req.body);
+    console.log(req['attachment-count']);
     res.send('ok');
 });
 
