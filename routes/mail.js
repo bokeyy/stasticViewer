@@ -4,7 +4,17 @@ var MailParser = require("mailparser").MailParser;
 var router = express.Router();
 
 router.post('/', function (req, res, next) {
-    console.log(req);
+    req.rawBody = '';
+    req.setEncoding('utf8');
+
+    req.on('data', function(chunk) {
+        req.rawBody += chunk;
+    });
+
+    req.on('end', function() {
+        console.log(req.rawBody);
+        next();
+    });
     res.send('ok');
 });
 
