@@ -23,14 +23,18 @@ parseMailData = function (mailData) {
 
     var mailparser = new MailParser({
         debug: true,
-        defaultCharset: 'utf8'
+        defaultCharset: 'utf-8'
     });
-
     mailparser.on("headers", function (headers) {
         console.log(headers.received);
     });
     mailparser.on("end", function (mail) {
-        console.log(mail); // object structure for parsed e-mail
+        console.log("From:", mail.from); //[{address:'sender@example.com',name:'Sender Name'}]
+        console.log("Subject:", mail.subject); // Hello world!
+        console.log("Text body:", mail.text); // How are you today?
+        mail.attachments.forEach(function(attachment){
+            console.log(attachment.fileName);
+        });
     });
     mailparser.write(mailData);
 };
