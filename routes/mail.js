@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs');
 var MailParser = require("mailparser").MailParser;
 
 var router = express.Router();
