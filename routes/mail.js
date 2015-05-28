@@ -21,8 +21,7 @@ parseMailData = function (mailData) {
 
     var mailparser = new MailParser({
         debug: true,
-        defaultCharset: 'utf-8',
-        streamAttachments: true
+        defaultCharset: 'utf-8'
     });
     mailparser.on("headers", function (headers) {
         console.log(headers.received);
