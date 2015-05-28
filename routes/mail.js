@@ -11,7 +11,6 @@ router.post('/', function (req, res, next) {
     req.on('data', function (chunk) {
         data += chunk;
     });
-
     req.on('end', function () {
         parseMailData(data);
     });
@@ -33,7 +32,7 @@ parseMailData = function (mailData) {
         console.log("Subject:", mail.subject); // Hello world!
         console.log("Text body:", mail.text); // How are you today?
         mail.attachments.forEach(function(attachment){
-            console.log(attachment.fileName);
+            console.log('附件：\n', attachment.fileName);
         });
     });
     mailparser.write(mailData);
