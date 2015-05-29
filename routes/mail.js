@@ -21,8 +21,20 @@ router.post('/mime', function (req, res, next) {
 
             if (attachment.contentType === "text/csv") {
                 new CSV(attachment.content.toString()).forEach(function (array) {
-                    for(var name in array){
-                        console.log(name);
+                    try {
+                        var DOMLoadedItem = array[1].split(',');
+                        if(DOMLoadedItem.length !== 2){throw new Error('标签格式不符' + array[1])}
+                        
+                        var miliSeconds = DOMLoadedItem[0];
+                        var pathName = DOMLoadedItem[1];
+                        var DOMLoadedArray = DOMLoadedTable.get(pathName);
+
+                        DOMLoadedArray.push({time: miliSeconds, date: new Date()});
+                        DOMLoadedTable.set(pathName, DOMLoadedArray);
+
+                        console.log(DOMLoadedArray);
+                    } catch (err) {
+                        console.log(err);
                     }
                 });
             }
