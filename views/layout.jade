@@ -5,21 +5,22 @@ html
         link(rel='stylesheet', href='/stylesheets/semantic-ui/semantic.min.css')
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
-        .ui.menu
-            a.item(href="/")
-                i.home.icon
-                |  首页
-            a.item(href="/charts/")
-                i.bar.chart.icon
-                |  图表
-            .right.menu
-                .item
-                    .ui.transparent.icon.input
-                        input(type='text', placeholder='搜索...')
-                        i.search.link.icon
-        block content
-        script(src='//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
-        script(src='/stylesheets/semantic-ui/semantic.min.js')
-        script.
-            var currentPath = location.pathname;
-            jQuery('[href="'+ currentPath +'"]').addClass("active");
+        .main.container
+            .ui.menu
+                a.item(href="/")
+                    i.home.icon
+                    |  首页
+                a.item(href="/charts/")
+                    i.bar.chart.icon
+                    |  图表
+                .right.menu
+                    .item
+                        .ui.transparent.icon.input
+                            input(type='text', placeholder='搜索...')
+                            i.search.link.icon
+            block content
+            script(src='//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
+            script(src='/stylesheets/semantic-ui/semantic.min.js')
+            script.
+                var currentPath = location.pathname;
+                jQuery('[href="'+ currentPath +'"]').addClass("active");

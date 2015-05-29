@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: '百度统计自定义变量辅助查看工具'});
+    res.render('index', {title: '百度统计辅助查看工具'});
 });
 
 module.exports = router;
