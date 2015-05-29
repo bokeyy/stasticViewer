@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var md5 = require('MD5');
-var AV = require('avoscloud-sdk').AV;
-
-AV.initialize("06lemnqefoaigmzf7ta2n6f69jbfz37i6hpwimgymuwxk8qy", "37hhl2mxf9g0dsdvs1doy52q39cvpmsiyry7ovyap65oo10s");
-var loginClass = AV.Object.extend("login");
-var login = new loginClass;
+var login = require('../server/leanCloud').users;
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -31,6 +27,7 @@ router.post('/login', function (req, res, next) {
 
     var checkPassed = false;
     try{
+        console.log(login.get(req.body.username));
         if(login.get(req.body.username) === md5(req.body.password)){
             checkPassed = true;
         }
@@ -39,7 +36,10 @@ router.post('/login', function (req, res, next) {
         res.send('login failed');
     }
 
-    checkPassed && res.redirect('/charts/');
+    if(checkPassed){res.redirect('/charts/');}else{
+        console.log('check not passed', req.body);
+        res.send('login failed');
+    }
 
     // TODO 登录校验没加 Cookie ，假得不得了
     //checkPassed && res.redirect('/users/user/' + req.body.username);

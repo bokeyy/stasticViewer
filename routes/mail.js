@@ -1,15 +1,9 @@
 var express = require('express');
-var fs = require('fs');
 var MailParser = require("mailparser").MailParser;
 var CSV = require("comma-separated-values");
-var AV = require('avoscloud-sdk').AV;
-
 var router = express.Router();
 var statMailParser = new MailParser();
-
-AV.initialize("06lemnqefoaigmzf7ta2n6f69jbfz37i6hpwimgymuwxk8qy", "37hhl2mxf9g0dsdvs1doy52q39cvpmsiyry7ovyap65oo10s");
-var DOMLoadedTableClass = AV.Object.extend("DOMLoaded");
-var DOMLoadedTable = new DOMLoadedTableClass;
+var DOMLoadedTable = require('../server/leanCloud').DOMLoaded;
 
 router.post('/mime', function (req, res, next) {
     statMailParser.write(req.body['body-mime']);
