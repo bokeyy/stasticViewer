@@ -8,7 +8,8 @@ var router = express.Router();
 var statMailParser = new MailParser();
 
 AV.initialize("06lemnqefoaigmzf7ta2n6f69jbfz37i6hpwimgymuwxk8qy", "37hhl2mxf9g0dsdvs1doy52q39cvpmsiyry7ovyap65oo10s");
-var DOMLoadedTable = AV.Object.extend("DOMLoaded");
+var DOMLoadedTableClass = AV.Object.extend("DOMLoaded");
+var DOMLoadedTable = new DOMLoadedTableClass;
 
 router.post('/mime', function (req, res, next) {
     statMailParser.write(req.body['body-mime']);
