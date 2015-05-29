@@ -16,6 +16,7 @@
     "serve-favicon": "~2.2.0",
     "mailparser": "^0.4.6",
     "comma-separated-values": "~3.6.1",
-    "avoscloud-sdk": "latest"
+    "avoscloud-sdk": "latest",
+    "MD5": "latest"
   }
 }

@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: '百度统计自定义变量查看器' });
+router.get('/', function (req, res, next) {
+    res.render('index', {title: '百度统计自定义变量辅助查看工具'});
 });
 
 module.exports = router;
