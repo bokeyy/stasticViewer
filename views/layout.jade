@@ -4,9 +4,11 @@ html
         title= title
         link(rel='stylesheet', href='/stylesheets/semantic-ui/semantic.min.css')
         link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src='//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
+        script(src='/stylesheets/semantic-ui/semantic.min.js')
     body
         .main.container
-            .ui.menu
+            .ui.main.menu
                 a.item(href="/")
                     i.home.icon
                     |  首页
@@ -19,8 +21,6 @@ html
                             input(type='text', placeholder='搜索...')
                             i.search.link.icon
             block content
-            script(src='//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
-            script(src='/stylesheets/semantic-ui/semantic.min.js')
             script.
                 var currentPath = location.pathname;
-                jQuery('[href="'+ currentPath +'"]').addClass("active");
+                $('[href="' + currentPath + '"]').addClass("active");

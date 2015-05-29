@@ -1,31 +1,39 @@
 extends layout
 block content
     main
-        .ui.vertical.left.floated.pointing.mr15w.menu
+        .ui.black.big.launch.right.attached.fixed.sticky.button#selectChartType
+            i.content.icon
+            span.text 选择图表
+        .ui.vertical.sidebar.menu#chartType
             a.active.item
                 i.grid.download.icon
                 |  Dom loaded 时间
             a.item
                 i.linkify.icon
                 |  链接点击排序
-            .ui.dropdown.item
-                | More
-                i.dropdown.icon
-                .menu
-                    a.item
-                        i.edit.icon
-                        |  Edit Profile
-                    a.item
-                        i.globe.icon
-                        |  Choose Language
-                    a.item
-                        i.settings.icon
-                        |  Account Settings
-        section.ui.overflow-hidden.segment
+            a.item
+                i.photo.icon
+                |  热力点击图
+        .ui.basic.segment
             h2 Dom loaded （页面从开始下载到加载完成）时间
             .ui.divider
-            table
-                thead
-                each obj in [{time: 1}]
-                    tr
-                        td= obj.time
+            section.ui.segment
+                table
+                    thead
+                    each obj in [{time: 1}]
+                        tr
+                            td= obj.time
+    script.
+        var $menu = $("#chartType");
+
+        $menu.sidebar({
+            transition: 'uncover',
+            mobileTransition: 'uncover'
+        });
+        $('.launch.button, .view-ui, .launch.item')
+                .on('click', function (event) {
+                    $menu.sidebar('toggle');
+                    event.preventDefault();
+                })
+        ;
+        $('#selectChartType').sticky();
