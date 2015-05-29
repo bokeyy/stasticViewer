@@ -24,10 +24,11 @@ router.post('/mime', function (req, res, next) {
                     try {
                         var DOMLoadedItem = array[1].split(',');
                         if(DOMLoadedItem.length !== 2){throw new Error('标签格式不符' + array[1])}
-                        
+
                         var miliSeconds = DOMLoadedItem[0];
                         var pathName = DOMLoadedItem[1];
-                        var DOMLoadedArray = DOMLoadedTable.get(pathName);
+                        var DOMLoadedArray;
+                            DOMLoadedArray = DOMLoadedTable.get ? DOMLoadedTable.get(pathName) : [];
 
                         DOMLoadedArray.push({time: miliSeconds, date: new Date()});
                         DOMLoadedTable.set(pathName, DOMLoadedArray);
@@ -35,6 +36,17 @@ router.post('/mime', function (req, res, next) {
                         console.log(DOMLoadedArray);
                     } catch (err) {
                         console.log(err);
+                    }
+                });
+                DOMLoadedTable.save(null, {
+                    success: function(DOMLoadedTable) {
+                        // Execute any logic that should take place after the object is saved.
+                        alert('New object created with objectId: ' + DOMLoadedTable.id);
+                    },
+                    error: function(DOMLoadedTable, error) {
+                        // Execute any logic that should take place if the save fails.
+                        // error is a AV.Error with an error code and description.
+                        alert('Failed to create new object, with error code: ' + error.message);
                     }
                 });
             }
