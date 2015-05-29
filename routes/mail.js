@@ -13,8 +13,8 @@ router.post('/mime', function (req, res, next) {
         console.log("Subject:", mail.subject); // Hello world!
         console.log("Text body:", mail.text); // How are you today?
         mail.attachments && mail.attachments.forEach(function (attachment) {
-            if(attachment.contentType === "text/csv"){
-                new CSV(attachment.content.toString()).forEach(function(array) {
+            if (attachment.contentType === "text/csv") {
+                new CSV(attachment.content.toString()).forEach(function (array) {
                     console.log(array);
                 });
             }
