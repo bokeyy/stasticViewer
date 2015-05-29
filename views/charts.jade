@@ -1,0 +1,31 @@
+extends layout
+block content
+    main
+        .ui.vertical.left.floated.pointing.mr15w.menu
+            a.active.item
+                i.grid.download.icon
+                |  Dom loaded 时间
+            a.item
+                i.linkify.icon
+                |  链接点击排序
+            .ui.dropdown.item
+                | More
+                i.dropdown.icon
+                .menu
+                    a.item
+                        i.edit.icon
+                        |  Edit Profile
+                    a.item
+                        i.globe.icon
+                        |  Choose Language
+                    a.item
+                        i.settings.icon
+                        |  Account Settings
+        section.ui.overflow-hidden.segment
+            h2 Dom loaded （页面从开始下载到加载完成）时间
+            .ui.divider
+            table
+                thead
+                each obj in [{time: 1}]
+                    tr
+                        td= obj.time

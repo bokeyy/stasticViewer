@@ -34,10 +34,19 @@ router.post('/login', function (req, res, next) {
         login.get(req.body.username) === md5(req.body.password);
         checkPassed = true;
     }catch(err){
-        console.log('login failed', req.body);
+        console.log('login failed \n', req.body, err);
+        res.send('login failed');
     }
 
-    res.send('login ' + (checkPassed ? 'success' : 'failed'));
+    // TODO 登录校验没加 Cookie ，假得不得了
+
+    checkPassed && res.redirect('/users/user/' + req.body.username);
+});
+
+router.get('/user/:username', function(req, res, next){
+    res.render('users', {
+        username: req.params.username
+    });
 });
 
 module.exports = router;
