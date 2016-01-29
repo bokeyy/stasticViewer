@@ -1,25 +1,35 @@
-extends layout
-
-block content
-    .ui.basic.segment
-        .ui.grid
-            .ui.centered.aligned.six.wide.column
-                h1.ui.header
-                    img(src='/images/icons/plugin.png')
-                    .content
-                        | #{title}
-                        .sub.header 欢迎使用 #{title}
-                .ui.divider
-                form.ui.form(action="/users/login" method="post")
-                    .required.field
-                        label 用户名
-                        .ui.icon.input
-                            input(type='text', placeholder='用户名' name="username")
-                            i.user.icon
-                    .required.field
-                        label 密码
-                        .ui.icon.input
-                            input(type='password' placeholder="密码" name="password")
-                            i.lock.icon
-                    .ui.error.messages
-                    button.ui.submit.button(type="submit") 登录
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/semantic-ui/semantic.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src='//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
+        script(src='/stylesheets/semantic-ui/semantic.min.js')
+    body
+        .main.container
+            .ui.basic.segment
+                .ui.grid
+                    .ui.centered.aligned.six.wide.column
+                        h1.ui.header
+                            img(src='/images/icons/plugin.png')
+                            .content
+                                | #{title}
+                                .sub.header 欢迎使用 #{title}
+                        .ui.divider
+                        form.ui.form(action="/users/login" method="post")
+                            .required.field
+                                label 用户名
+                                .ui.icon.input
+                                    input(type='text', placeholder='用户名' name="username")
+                                    i.user.icon
+                            .required.field
+                                label 密码
+                                .ui.icon.input
+                                    input(type='password' placeholder="密码" name="password")
+                                    i.lock.icon
+                            .ui.error.messages
+                            button.ui.submit.button(type="submit") 登录
+                    script.
+                        var currentPath = location.pathname;
+                        $('[href="' + currentPath + '"]').addClass("active");
