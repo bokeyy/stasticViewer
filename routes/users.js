@@ -36,7 +36,7 @@ router.post('/login', function (req, res, next) {
         res.send('login failed');
     }
 
-    if(checkPassed){res.redirect('/charts/');}else{
+    if(checkPassed){res.redirect('/users/username/' + req.body.username);}else{
         console.log('check not passed', req.body);
         res.send('login failed');
     }
@@ -45,7 +45,7 @@ router.post('/login', function (req, res, next) {
     //checkPassed && res.redirect('/users/user/' + req.body.username);
 });
 
-router.get('/user/:username', function(req, res, next){
+router.get('/username/:username', function(req, res, next){
     res.render('users', {
         username: req.params.username
     });
