@@ -9,6 +9,8 @@ var DOMLoadedTable = new DOMLoadedTableClass;
 var loginClass = AV.Object.extend("login");
 var login = new loginClass;
 
+console.log(exports);
+
 exports = {
     DOMLoaded: DOMLoadedTable,
     users: login
