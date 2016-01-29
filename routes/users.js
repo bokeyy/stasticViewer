@@ -27,7 +27,7 @@ router.post('/login', function (req, res, next) {
 
     var checkPassed = false;
     try{
-        console.log(login.get(req.body.username));
+        //console.log(login.get(req.body.username), login);
         if(login.get(req.body.username) === md5(req.body.password)){
             checkPassed = true;
         }
